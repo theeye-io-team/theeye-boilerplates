@@ -7,14 +7,8 @@
  * @prop {Object} next
  */
 const successOutput = (options = {}) => {
-  const { data, components, next } = options
   // https://documentation.theeye.io/core-concepts/scripts/#passing-arguments-in-workflow
-  const output = {
-    state: "success",
-    data,
-    components, // https://documentation.theeye.io/core-concepts/tasks/script_type/#components
-    next
-  }
+  const output = Object.assign({ state: 'success' }, options)
   console.log( JSON.stringify(output) )
   process.exit(0)
 }
@@ -64,9 +58,8 @@ process.once('SIGTERM', function (code) {
 // NodeJs boilerplate
 const main = async () => {
   const result = {
-    data: ["arg1","arg2","arg3"],
-    components: { "popup": "Hi World!" },
-    next: {}
+    data: [],
+    //event_name: 'success',
   }
 
   // add your code here.
